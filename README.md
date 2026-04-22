@@ -24,3 +24,5 @@ Step-by-step instructions to get a local development environment running.
     # update-database
 
 ### After all the settings above run ANGULAR project first and then API project.
+
+# All the endpoints are this url: <yourDomain>/swagger/index.html
