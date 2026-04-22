@@ -10,7 +10,7 @@ Performance Overhead: The heavy use of abstractions and the need to map between 
 
 New developers may find the strict "Dependency Rule" (inner layers cannot know about outer layers) confusing at first, leading to a steeper onboarding process compared to traditional N-Tier architectures
 
-For Production search engine I used:
+For Product search engine I used:
 IQueryable<T> because it allows LINQ queries to be translated into SQL and executed directly on the database (e.g., Entity Framework), 
 fetching only necessary filtered data to improve performance. Its main benefit is optimizing data access for large datasets, 
 while the primary tradeoff is potential performance issues from lazy evaluation, complex SQL generation, and leaking DAL logic
