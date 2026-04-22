@@ -1,0 +1,17 @@
+<h1 mat-dialog-title>Delete Product</h1>
+
+<div mat-dialog-content>
+    <mat-card-content>
+        <div class="row">
+            Are you sure you want to delete this product?
+        </div>
+</mat-card-content>
+    
+</div>
+
+<div mat-dialog-actions >
+
+    <button mat-raised-button color="warn" (click)="onCancel()">Cancel</button>
+
+    <button mat-raised-button color="primary" (click)="onConfirm()">Delete</button>
+</div>

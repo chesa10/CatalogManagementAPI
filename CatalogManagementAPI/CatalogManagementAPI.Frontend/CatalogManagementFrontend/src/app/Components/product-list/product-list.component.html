@@ -1,0 +1,89 @@
+
+<div class="container-fluid">
+  <div class="d-flex justify-content-between mb-4">
+      <div class="flex-row container-fluid">
+        <div class="flex-row justify-content-center">
+          <div class="d-flex flex-row ">
+                <button (click)="AddEditProduct()" color="primary" mat-fab extended >
+                            <mat-icon>add</mat-icon>
+                            Add Product
+                </button>
+          </div>
+
+        <div class="d-flex justify-content-center" *ngIf="pagination">
+            <pagination [boundaryLinks]="true"
+                        [totalItems]="pagination.totalItems"
+                        [itemsPerPage]="pagination.itemsPerPage"
+                        [maxSize]="10"
+                        [(ngModel)]="pagination.currentPage"
+                        (pageChanged)="pageChanged($event)"
+                        previousText="&lsaquo;"
+                        nextText="&rsaquo;"
+                        firstText="&laquo;"
+                        lastText="&raquo;"></pagination>
+          </div>
+          <br/>
+            <form class="example-form">
+              <mat-form-field appearance="fill" class="filtercomponents">
+                <mat-label>Categories</mat-label>
+                <mat-select [(ngModel)]="data.categoryId" name="categoryId" (ngModelChange)="applyAdvancedFilter()">
+                <mat-option [value]="null">Clear selection</mat-option>
+                <mat-option *ngFor="let p of catList" [value]="p.id">{{p.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <mat-form-field class="filtercomponents">
+                <mat-label>Name</mat-label>
+                <input matInput [(ngModel)]="data.name" (ngModelChange)="applyAdvancedFilter()"  name="name" placeholder="name">
+              </mat-form-field>
+          </form>
+                <br/>
+                    <table mat-table [dataSource]="dataSource" matSort class="mat-table mat-elevation-z8 demo-table">
+                        <ng-container matColumnDef="name">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                            <td mat-cell *matCellDef="let element">{{element.name}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="description">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Description</th>
+                            <td mat-cell *matCellDef="let element">{{element.description}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="sku">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>SKU</th>
+                            <td mat-cell *matCellDef="let element">{{element.sku}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="price">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+                            <td mat-cell *matCellDef="let element">{{element.price}}</td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="quantity">
+                            <th mat-header-cell *matHeaderCellDef mat-sort-header>Quantity</th>
+                            <td mat-cell *matCellDef="let element">{{element.quantity}}</td>
+                        </ng-container>
+
+                                <!-- Action Column -->
+                    <ng-container matColumnDef="actions">
+                        <th mat-header-cell *matHeaderCellDef> Actions </th>
+                        <td mat-cell *matCellDef="let element">
+                        <button mat-icon-button (click)="editRow(element.id)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button (click)="deleteProduct(element.id)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                        </td>
+                    </ng-container>
+
+                        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                        <tr mat-row
+                            *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+
+                
+            </div>
+        </div>
+    </div>
+</div>
